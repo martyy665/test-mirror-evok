@@ -13,12 +13,7 @@ if [ -x "${UNWANTED_VIRTUALENV}" ]; then
   rm -f "${UNWANTED_VIRTUALENV}"
 fi
 
-if [ "$DEBIAN_VERSION" == "stretch" ]; then
-  apt update && apt install -y dh-virtualenv dpkg-dev dh-exec build-essential fakeroot git python libpython-dev libow-dev
-else
-  apt update && apt install -y dh-virtualenv dpkg-dev dh-exec build-essential fakeroot git python2.7 python libpython2-dev libow-dev
-fi
-
+apt update && apt install -y dh-virtualenv dh-python debhelper python3-all python3.11-dev dh-virtualenv dh-exec
 
 . "$(pwd)/gitlab-ci/replace-version-consts.sh"
 
