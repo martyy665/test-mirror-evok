@@ -1,15 +1,18 @@
 #!/bin/bash
 
-if [[ ! -z "${CI_COMMIT_TAG}" ]]; then
+function normalize_version_string(){
+    echo "${1}" | sed 's/^.*[^0-9]\([0-9]\+\.[0-9]\+\.[0-9]\+\).*$/\1/'
+}
+
+if [[ -n "${CI_COMMIT_TAG}" ]]; then
   export PACKAGE_VERSION=${CI_COMMIT_TAG}
 else
-  export PACKAGE_VERSION=$(/ci-scripts/generate-new-tag-for-test.sh)
+  PACKAGE_VERSION="$(/ci-scripts/generate-new-tag-for.sh .test.)"
+  PACKAGE_VERSION=$(normalize_version_string "${PACKAGE_VERSION}")
+  export PACKAGE_VERSION
 fi
 
 echo "Patching version constants with $PACKAGE_VERSION"
-
-#Pip package metainfo file
-sed -i "s/version=.*/version=\\'${PACKAGE_VERSION}\\',/" setup.py
 
 #Documentation markdown file used by web-interface of gitlab/github
 sed -i "s/\\/evok\\/archive.*/\\/evok\\/archive\\/${PACKAGE_VERSION}.zip/" README.md
