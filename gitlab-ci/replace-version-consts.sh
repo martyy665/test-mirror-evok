@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function normalize_version_string(){
-    echo "${1}" | sed 's/^.*[^0-9]\([0-9]\+\.[0-9]\+\.[0-9]\+\).*$/\1/'
+    echo "${1}" | sed 's/^[^0-9]*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*$/\1/'
 }
 
 if [[ -n "${CI_COMMIT_TAG}" ]]; then
