@@ -5,10 +5,15 @@ function normalize_version_string(){
 }
 
 if [[ -n "${CI_COMMIT_TAG}" ]]; then
-  export PACKAGE_VERSION=${CI_COMMIT_TAG}
+  echo "Version string before normalization: ${CI_COMMIT_TAG}"
+  PACKAGE_VERSION=$(normalize_version_string "${CI_COMMIT_TAG}")
+  echo "Version string after normalization: ${PACKAGE_VERSION}"
+  export PACKAGE_VERSION
 else
   PACKAGE_VERSION="$(/ci-scripts/generate-new-tag-for.sh .test.)"
+  echo "Version string before normalization: ${PACKAGE_VERSION}"
   PACKAGE_VERSION=$(normalize_version_string "${PACKAGE_VERSION}")
+  echo "Version string after normalization: ${PACKAGE_VERSION}"
   export PACKAGE_VERSION
 fi
 
