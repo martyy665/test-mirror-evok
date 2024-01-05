@@ -7,5 +7,6 @@ variables:
     build_for_architecture: "armhf arm64"
     build_for_distribution: "newstable"
     mirror_to_github: "yes"
+    build_independent_for: "newstable"
     github_url: "git@github.com:UniPiTechnology/evok.git"
     devel_repository: private_patrik
