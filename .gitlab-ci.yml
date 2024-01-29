@@ -8,4 +8,3 @@ variables:
     build_for_distribution: "newstable"
     mirror_to_github: "yes"
     github_url: "git@github.com:UniPiTechnology/evok.git"
-    devel_repository: private_patrik
