@@ -2,6 +2,9 @@
 
 # EVOK - the UniPi API
 
+>  _Moved to Github https://github.com/UniPiTechnology/evok_
+
+
 EVOK is the primary Web-services API for [PATRON], [NEURON], [AXON] and [UniPi 1.1] plc unit series. It provides a RESTful interface over HTTP, a JSON-RPC interface, a WebSocket interface a SOAP interface and a bulk JSON interface to UniPi devices.
 
 Evok is still in active development, so any testing, feedback and contributions are very much welcome and appreciated.
